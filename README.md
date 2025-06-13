@@ -1,0 +1,2 @@
+# JavaBattleships
+CLI battleships game
