@@ -1,19 +1,15 @@
+import java.util.Scanner;
+import java.util.Set;
+
 public class Main {
     public static void main(String[] args) {
-        // What has to happen?
-        // Place 5 ships
-        // 1x 5-long
-        // 1x 4-long
-        // 2x 3-long
-        // 1x 2-long
-
-        // board is 10x10 long
-
         // TODO's:
         // --PLAYER GUESSING--
-        // 1. Create Premade Bot Layout (for testing, randomize later)
-        // 2. Make sure Player cannot see Bot layout
+        // [x] 1. Create Premade Bot Layout (for testing, randomize later)
+        // [x] 2. Make sure Player cannot see Bot layout
         // 3. Take input from player to guess bot ship placement
+        //    - Make a list of valid guesses & validate answers
+        //    - Create a 'clean bot board' where you can display the players hits and misses
         // 4. Make player see where they have guessed
         // 5. Make player see where they have hit
         // 6. Make player win when all ships have been sunk
@@ -27,35 +23,64 @@ public class Main {
         // 6. Make bot remember direction after first hit, keep guessing that way
         // 7. Make bot remember first hit, then guess opposite direction to see if it continues that way
 
-
-
-
+        // --GAME LOGIC--
+        // 1. Make a game loop
+        // 2. Ask the player for input in determining placement of ships (all ships, 1x5 1x4 2x3 1x2)
+        // 3. Make the BOT place its ships randomly (semi-randomly?)
+        // 4. Alternate turns between player and bot
+        // 5. Add win/lose text and "do you want to play again?"
+        // 6. Shoutouts to simpleflips
 
 
 
 
         // ***ALL CODE AFTER THIS IS TESTING; GAME LOOP NOT YET IMPLEMENTED***
+        // Player Setup
         Player player = new Player();
-        player.board.PrintBoard();
-
-
-        // Bot bot = new Bot();
-        // bot.board.PrintBoard();
-
         Ship testShip1 = new Ship(4, 1, true);
         Ship testShip2 = new Ship(3, 55, false);
-
         player.AddShip(testShip1);
         player.AddShip(testShip2);
+        player.MakePlayersBattleshipsVisible();
 
-        for (int i = 0; i < player.playerShips.size(); i++){
-            Ship ship = player.playerShips.get(i);
-            for (int x = 0; x < ship.getPlacement().length; x++){
-                player.board.UpdateBoard(ship.getPlacement()[x], "S");
+        // Bot Setup
+        Bot bot = new Bot();
+        // bot.MakePlayersBattleshipsVisible();
+
+        // Print the boards
+        bot.board.PrintBoard();
+        player.board.PrintBoard();
+
+        // Game Variables
+        boolean gameOngoing = true;
+        Scanner scanner = new Scanner(System.in);
+
+        while (gameOngoing) {
+            System.out.println("So... Where do ya think they are?: ");
+            String currentGuess = scanner.nextLine();
+            System.out.println("Your guess is: " + currentGuess);
+
+            // TODO: Delete this - testing purposes only
+            System.out.println(player.IsGuessValid(currentGuess));
+
+            
+
+            if (currentGuess.equalsIgnoreCase("q")){
+                gameOngoing = false;
             }
         }
 
-        player.board.PrintBoard();
+
+
+
+
+
+
+
+
+
+
+
 
 
 
