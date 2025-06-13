@@ -12,6 +12,7 @@ public class Ship {
         placeShip(root, vertical);
     }
 
+    // Root is the top part of a vertical ship, or the leftmost part of a horizontal ship
     private void placeShip(int root, boolean vertical){
         if (vertical){
             for (int i = 0; i < shipLength; i++){
@@ -24,6 +25,7 @@ public class Ship {
         }
     }
 
+    // Returns True if the ship is dead
     public boolean ShipIsDead(){
         int[] placementClone = placement.clone();
         int[] hitsClone = hits.clone();

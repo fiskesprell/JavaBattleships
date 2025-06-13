@@ -10,6 +10,8 @@ public class Player {
         playerShips.add(ship);
 
         // Delete this
+        // This is only to see if the values get through correctly
+        // Perhaps write a test instead dumbass
         int[] placement = ship.getPlacement();
         for (int i = 0; i < placement.length; i++){
             System.out.print(placement[i]);
