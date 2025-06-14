@@ -38,17 +38,16 @@ public class Main {
         Player player = new Player();
         Ship testShip1 = new Ship(4, 1, true);
         Ship testShip2 = new Ship(3, 55, false);
+        Ship testShip3 = new Ship(5, player.convertGuessToInteger("E3"), false);
         player.addShip(testShip1);
         player.addShip(testShip2);
+        player.addShip(testShip3);
         player.makePlayersBattleshipsVisible();
 
         // Bot Setup
         Bot bot = new Bot();
         // bot.makePlayersBattleshipsVisible();
 
-        // Print the boards
-        bot.board.printBoard();
-        player.board.printBoard();
 
         // Game Variables
         boolean gameOngoing = true;
@@ -62,11 +61,9 @@ public class Main {
             String currentGuess = scanner.nextLine();
             System.out.println("Your guess is: " + currentGuess);
 
-            // TODO: Delete this - testing purposes only
-            System.out.println(player.isGuessValid(currentGuess));
 
             if (player.isGuessValid(currentGuess)){
-                bot.takeAHit(player.convertGuessToInteger(currentGuess));
+                bot.attackTheBot(player.convertGuessToInteger(currentGuess));
             } else {
                 System.out.println("Try that shit again homeboy. And input some valid shit ya hurd?");
             }
@@ -80,6 +77,10 @@ public class Main {
                 gameOngoing = false;
                 playerWin = true;
             }
+
+            bot.botGuesses(player);
+            player.board.printBoard();
+
         }
         if (playerWin) {
             System.out.println("GZ bro");

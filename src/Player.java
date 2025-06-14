@@ -24,7 +24,7 @@ public class Player {
     public void addShip(Ship ship){
         this.playerShips.add(ship);
         // TODO: Delete this before "final"
-        seeShipPlacement(ship);
+        // seeShipPlacement(ship);
         addToCombinedShipLocations(ship);
         setMaxHealth();
     }
@@ -82,12 +82,14 @@ public class Player {
         }
     }
 
-    public void takeAHit(int position){
+    public int takeAHit(int position){
         if (combinedShipLocations.contains(position)){
             this.board.updateBoard(position, "H");
             this.health -= 1;
+            return position;
         } else {
             this.board.updateBoard(position, "X");
+            return 0;
         }
     }
 
