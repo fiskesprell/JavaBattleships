@@ -6,13 +6,11 @@ public class Board {
 
     public Board(String username){
         this.username = username;
-        CreateCleanBoard();
-
-
+        createCleanBoard();
     }
 
     // Prints the current visible board
-    public void PrintBoard(){
+    public void printBoard(){
         System.out.println("_BOARD OF: " + username + "_");
         System.out.println("  1 2 3 4 5 6 7 8 9 10");
         System.out.print("A ");
@@ -32,13 +30,11 @@ public class Board {
                 case(80): System.out.print("I "); break;
                 case(90): System.out.print("J "); break;
             }
-
-
         }
     }
 
     // Adds a new value on the visible board
-    public void UpdateBoard(int key, String value){
+    public void updateBoard(int key, String value){
         if (key < 101) {
             this.board.put(key, value);
         } else { System.out.println("ERROR: Board/UpdateBoard - You tried to update the board with a value > 101"); }
@@ -46,7 +42,7 @@ public class Board {
 
 
     // Fills the 'board' HashMap with tildes from key value 1 to 101
-    private void CreateCleanBoard(){
+    private void createCleanBoard(){
         for (int i = 1; i < 101; i++){
             board.put(i, "~");
         }

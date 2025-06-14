@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,15 +6,15 @@ public class Main {
         // --PLAYER GUESSING--
         // [x] 1. Create Premade Bot Layout (for testing, randomize later)
         // [x] 2. Make sure Player cannot see Bot layout
-        // 3. Take input from player to guess bot ship placement
-        //    - Make a list of valid guesses & validate answers
-        //    - Create a 'clean bot board' where you can display the players hits and misses
-        // 4. Make player see where they have guessed
-        // 5. Make player see where they have hit
-        // 6. Make player win when all ships have been sunk
+        // [x] 3. Take input from player to guess bot ship placement
+        //    - [x] Make a list of valid guesses & validate answers
+        //    - [x] Create a 'clean bot board' where you can display the players hits and misses
+        // [x] 4. Make player see where they have guessed
+        // [x] 5. Make player see where they have hit
+        // [x] 6. Make player win when all ships have been sunk
 
         // --BOT PLAYING BACK--
-        // 1. Create Premade Player Layout (for testing, player input later)
+        // [x] 1. Create Premade Player Layout (for testing, player input later)
         // 2. Let bot make random guess (1 to 101)
         // 3. Prevent bot from making same guess twice
         // 4. Make bot remember where they hit
@@ -39,50 +38,53 @@ public class Main {
         Player player = new Player();
         Ship testShip1 = new Ship(4, 1, true);
         Ship testShip2 = new Ship(3, 55, false);
-        player.AddShip(testShip1);
-        player.AddShip(testShip2);
-        player.MakePlayersBattleshipsVisible();
+        player.addShip(testShip1);
+        player.addShip(testShip2);
+        player.makePlayersBattleshipsVisible();
 
         // Bot Setup
         Bot bot = new Bot();
-        // bot.MakePlayersBattleshipsVisible();
+        // bot.makePlayersBattleshipsVisible();
 
         // Print the boards
-        bot.board.PrintBoard();
-        player.board.PrintBoard();
+        bot.board.printBoard();
+        player.board.printBoard();
 
         // Game Variables
         boolean gameOngoing = true;
+        boolean playerWin = false;
         Scanner scanner = new Scanner(System.in);
 
         while (gameOngoing) {
+
+            bot.board.printBoard();
             System.out.println("So... Where do ya think they are?: ");
             String currentGuess = scanner.nextLine();
             System.out.println("Your guess is: " + currentGuess);
 
             // TODO: Delete this - testing purposes only
-            System.out.println(player.IsGuessValid(currentGuess));
+            System.out.println(player.isGuessValid(currentGuess));
 
-            
+            if (player.isGuessValid(currentGuess)){
+                bot.takeAHit(player.convertGuessToInteger(currentGuess));
+            } else {
+                System.out.println("Try that shit again homeboy. And input some valid shit ya hurd?");
+            }
 
-            if (currentGuess.equalsIgnoreCase("q")){
+
+            if (currentGuess.equalsIgnoreCase("q")) {
                 gameOngoing = false;
             }
+
+            if (bot.isDead()) {
+                gameOngoing = false;
+                playerWin = true;
+            }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if (playerWin) {
+            System.out.println("GZ bro");
+        } else {
+            System.out.println("lol u bad bro");
+        }
     }
 }

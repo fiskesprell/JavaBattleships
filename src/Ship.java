@@ -26,7 +26,7 @@ public class Ship {
     }
 
     // Returns True if the ship is dead
-    public boolean ShipIsDead(){
+    public boolean shipIsDead(){
         int[] placementClone = placement.clone();
         int[] hitsClone = hits.clone();
         Arrays.sort(placementClone);

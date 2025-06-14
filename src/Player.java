@@ -5,6 +5,8 @@ public class Player {
     public Board board = new Board("Player");
 
     public ArrayList<Ship> playerShips = new ArrayList<Ship>();
+    public ArrayList<Integer> combinedShipLocations = new ArrayList<>();
+    public int health;
 
     private static final Set<String> VALID_GUESSES = Set.of(
             "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10",
@@ -19,34 +21,58 @@ public class Player {
             "J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9", "J10"
     );
 
-    public void AddShip(Ship ship){
+    public void addShip(Ship ship){
         this.playerShips.add(ship);
-
-        // Delete this
-        // This is only to see if the values get through correctly
-        // Perhaps write a test instead dumbass
-        SeeShipPlacement(ship);
+        // TODO: Delete this before "final"
+        seeShipPlacement(ship);
+        addToCombinedShipLocations(ship);
+        setMaxHealth();
     }
 
-    public void MakePlayersBattleshipsVisible(){
+    public void makePlayersBattleshipsVisible(){
         for (int i = 0; i < this.playerShips.size(); i++){
             Ship ship = this.playerShips.get(i);
             for (int x = 0; x < ship.getPlacement().length; x++){
-                this.board.UpdateBoard(ship.getPlacement()[x], "S");
+                this.board.updateBoard(ship.getPlacement()[x], "S");
             }
         }
     }
 
-    public boolean IsGuessValid(String guess){
+    private void addToCombinedShipLocations(Ship ship){
+        for (int i = 0; i < ship.getPlacement().length; i++){
+            this.combinedShipLocations.add(ship.getPlacement()[i]);
+        }
+    }
+
+    private void setMaxHealth(){
+        this.health = this.combinedShipLocations.size();
+    }
+
+    public boolean isGuessValid(String guess){
         return VALID_GUESSES.contains(guess);
     }
 
-    private int ConvertGuessToInteger(String guess){
-        String funny = guess;
-        return 1;
+    public int convertGuessToInteger(String guess){
+        int tens = 0;
+        char letter = guess.charAt(0);
+        String number = guess.substring(1);
+        switch (letter){
+            case('A'): break;
+            case ('B'): tens += 10; break;
+            case ('C'): tens += 20; break;
+            case ('D'): tens += 30; break;
+            case ('E'): tens += 40; break;
+            case ('F'): tens += 50; break;
+            case ('G'): tens += 60; break;
+            case ('H'): tens += 70; break;
+            case ('I'): tens += 80; break;
+            case ('J'): tens += 90; break;
+        }
+
+        return tens + Integer.valueOf(number);
     }
 
-    private void SeeShipPlacement(Ship ship){
+    private void seeShipPlacement(Ship ship){
         int[] placement = ship.getPlacement();
         for (int i = 0; i < placement.length; i++){
             System.out.print(placement[i]);
@@ -54,6 +80,19 @@ public class Player {
                 System.out.print("\n");
             } else { System.out.print("-");}
         }
+    }
+
+    public void takeAHit(int position){
+        if (combinedShipLocations.contains(position)){
+            this.board.updateBoard(position, "H");
+            this.health -= 1;
+        } else {
+            this.board.updateBoard(position, "X");
+        }
+    }
+
+    public boolean isDead(){
+        return health == 0;
     }
 
 }
