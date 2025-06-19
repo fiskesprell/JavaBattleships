@@ -82,6 +82,10 @@ public class Player {
         }
     }
 
+    // Bot shoots a shot at the players board.
+    // Marks that position with H if hit, X if miss.
+    // Returns int position if HIT
+    // Returns int 0 if NOT HIT
     public int takeAHit(int position){
         if (combinedShipLocations.contains(position)){
             this.board.updateBoard(position, "H");

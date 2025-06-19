@@ -32,7 +32,6 @@ public class Main {
 
 
 
-
         // ***ALL CODE AFTER THIS IS TESTING; GAME LOOP NOT YET IMPLEMENTED***
         // Player Setup
         Player player = new Player();
