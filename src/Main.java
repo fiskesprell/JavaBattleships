@@ -1,26 +1,8 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        // TODO's:
-        // --PLAYER GUESSING--
-        // [x] 1. Create Premade Bot Layout (for testing, randomize later)
-        // [x] 2. Make sure Player cannot see Bot layout
-        // [x] 3. Take input from player to guess bot ship placement
-        //    - [x] Make a list of valid guesses & validate answers
-        //    - [x] Create a 'clean bot board' where you can display the players hits and misses
-        // [x] 4. Make player see where they have guessed
-        // [x] 5. Make player see where they have hit
-        // [x] 6. Make player win when all ships have been sunk
 
-        // --BOT PLAYING BACK--
-        // [x] 1. Create Premade Player Layout (for testing, player input later)
-        // 2. Let bot make random guess (1 to 101)
-        // 3. Prevent bot from making same guess twice
-        // 4. Make bot remember where they hit
-        // 5. Make bot guess below, right, under, left of first hits
-        // 6. Make bot remember direction after first hit, keep guessing that way
-        // 7. Make bot remember first hit, then guess opposite direction to see if it continues that way
+    public static void main(String[] args) {
 
         // --GAME LOGIC--
         // 1. Make a game loop
@@ -38,9 +20,15 @@ public class Main {
         Ship testShip1 = new Ship(4, 1, true);
         Ship testShip2 = new Ship(3, 55, false);
         Ship testShip3 = new Ship(5, player.convertGuessToInteger("E3"), false);
+        Ship testShip4 = new Ship(4, 10, true);
+        Ship testShip5 = new Ship(4, 8, true);
+        Ship testShip6 = new Ship(4, 72, true);
         player.addShip(testShip1);
         player.addShip(testShip2);
         player.addShip(testShip3);
+        player.addShip(testShip4);
+        player.addShip(testShip5);
+        player.addShip(testShip6);
         player.makePlayersBattleshipsVisible();
 
         // Bot Setup
@@ -55,9 +43,10 @@ public class Main {
 
         while (gameOngoing) {
 
-            bot.board.printBoard();
+            // bot.board.printBoard();
             System.out.println("So... Where do ya think they are?: ");
             String currentGuess = scanner.nextLine();
+            currentGuess.toUpperCase();
             System.out.println("Your guess is: " + currentGuess);
 
 

@@ -1,0 +1,33 @@
+---- Todos ------
+[ ] Prevent a guess that is out of bounds ( guess > 100 or guess < 0 )
+[ ] Fix bot behaviour where it goes back to random guessing without exploring all possibilities
+[ ] change bot/guessesCanContinueDirection from going off RootHit to going off lastHit
+
+---- Last Playtest Output -----
+
+The placement of the player ships was as follows:
+A1(1), B1(11), C1(21), D1(31)
+A7(7), B7(17), C7(27), D7(37)
+A10(10), B10(20), C10(30), D10(40)
+E3, E4, E5, E6, E7
+F5, F6, F7
+H2, I2, J2
+
+
+The bot guessed as follows:
+67 - miss
+22 - miss
+95 - miss
+79 - miss
+20 - hit (B10)
+30 - hit (correct logic, could not go right so went down next.)
+40 - hit (correct logic, continues the direction of the second hit)
+50 - miss (correct logic, same logic as previous)
+10 - hit (correct logic, goes from root in opposite direction. this time up.)
+0 - out of bounds (should not be possible, though I do not have logic for this and it likely counts as a miss so there isnt a problem for me if this is counted as a miss)
+35 - miss (goes back to random. correct logic so far)
+8 - hit (random guess. correct logic so far).
+9 - miss (guessed right first, correct logic so far)
+98 - miss - seems random. (expected it to try go down after going right once, which it already did. Expected it to try 18).
+84 - miss - (seems to have gone back to random guessing, breaking out of the exploringStage loop.
+

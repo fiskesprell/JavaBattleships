@@ -51,7 +51,7 @@ public class Bot extends Player {
     	Random r = new Random();
 		int randomNumber;
 		while (true){
-			randomNumber = r.nextInt(101);
+			randomNumber = r.nextInt(1,101);
 			if (!usedGuesses.contains(randomNumber)){
 				break;
 			}
@@ -63,23 +63,15 @@ public class Bot extends Player {
 		boolean canContinue = true;
 		switch (this.direction){
 			// Right
-			case (0):
-				canContinue = !(this.rootHit % 10 == 0);
-				break;
+			case (0): return !(rootHit % 10 == 0);
 			// Down
-			case (1):
-				canContinue = !((this.rootHit + 10) > 100);
-				break;
+			case (1): return (rootHit < 91);
 			// Left
-			case (2):
-				canContinue = !(this.rootHit % 10 == 1);
-				break;
+			case (2): return !(rootHit % 10 == 1);
 			// Up
-			case (3):
-				canContinue = !((this.rootHit - 10) < 0);
-				break;
+			case (3): return (rootHit > 10);
+			default: return false;
 		}
-		return canContinue;
     }
 
     private void flipGuessDirection(){
@@ -159,6 +151,7 @@ public class Bot extends Player {
 						exploringStage = 0;
 						rootHit = 0;
 						direction = 0;
+						correctGuessesCounter = 1;
 					}
 					break;
 				}
@@ -166,6 +159,14 @@ public class Bot extends Player {
 			// Stage 4: Once missed during stage 3, return to random guesses
 			if (!(0 == exploringStage)) {
 				guess = keepGuessingCurrentDirection();
+				// if it generates a previously guessed hit, reset everything.
+				if (usedGuesses.contains(guess)){
+					exploringStage = 0;
+					direction = 0;
+					rootHit = 0;
+					correctGuessesCounter = 1;
+					guess = guessRandomly();
+				}
 			}
 		}
 
@@ -191,6 +192,9 @@ public class Bot extends Player {
 
 		// Adds the played guess to usedGuesses
 		usedGuesses.add(guess);
+
+		// TODO: DELETE - DEBUGGING
+		System.out.println("BOT GUESSED: " + String.valueOf(guess));
 	}
 
 
