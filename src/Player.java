@@ -33,7 +33,7 @@ public class Player {
         for (int i = 0; i < this.playerShips.size(); i++){
             Ship ship = this.playerShips.get(i);
             for (int x = 0; x < ship.getPlacement().length; x++){
-                this.board.updateBoard(ship.getPlacement()[x], "S");
+                this.board.updateBoard(ship.getPlacement()[x], "⚓");
             }
         }
     }
@@ -88,11 +88,11 @@ public class Player {
     // Returns int 0 if NOT HIT
     public int takeAHit(int position){
         if (combinedShipLocations.contains(position)){
-            this.board.updateBoard(position, "H");
+            this.board.updateBoard(position, "🎯");
             this.health -= 1;
             return position;
         } else {
-            this.board.updateBoard(position, "X");
+            this.board.updateBoard(position, "❌");
             return 0;
         }
     }
