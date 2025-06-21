@@ -44,7 +44,7 @@ public class Board {
     // Fills the 'board' HashMap with tildes from key value 1 to 101
     private void createCleanBoard(){
         for (int i = 1; i < 101; i++){
-            board.put(i, "💧");
+            board.put(i, "~");
         }
     }
 

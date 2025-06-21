@@ -22,7 +22,7 @@ public class Main {
         Ship testShip3 = new Ship(5, player.convertGuessToInteger("E3"), false);
         Ship testShip4 = new Ship(4, 10, true);
         Ship testShip5 = new Ship(4, 8, true);
-        Ship testShip6 = new Ship(4, 72, true);
+        Ship testShip6 = new Ship(3, 72, true);
         player.addShip(testShip1);
         player.addShip(testShip2);
         player.addShip(testShip3);

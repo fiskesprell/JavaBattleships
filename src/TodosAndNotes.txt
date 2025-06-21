@@ -1,7 +1,7 @@
 ---- Todos ------
-[ ] Prevent a guess that is out of bounds ( guess > 100 or guess < 0 )
 [ ] Fix bot behaviour where it goes back to random guessing without exploring all possibilities
-[ ] change bot/guessesCanContinueDirection from going off RootHit to going off lastHit
+[ ] Prevent a guess that is out of bounds ( guess > 100 or guess < 0 )
+
 
 ---- Last Playtest Output -----
 

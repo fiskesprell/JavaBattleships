@@ -33,7 +33,7 @@ public class Player {
         for (int i = 0; i < this.playerShips.size(); i++){
             Ship ship = this.playerShips.get(i);
             for (int x = 0; x < ship.getPlacement().length; x++){
-                this.board.updateBoard(ship.getPlacement()[x], "⚓");
+                this.board.updateBoard(ship.getPlacement()[x], "S");
             }
         }
     }
